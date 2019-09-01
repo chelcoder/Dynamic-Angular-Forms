@@ -1,0 +1,88 @@
+
+
+<ng-container *ngIf="user$;">
+    <div class="row">
+        <div class="model_left" style="width: 18% !important;">
+            <div class="row">
+
+                <div *ngIf="actionType == 'edit' || actionType == 'view'" class="track_img">
+
+
+                        <img id="myImg" (click)="enlargeImage($event,'open')"
+                             src="{{user$.profileImageUrl}}" alt="Fault Image" align="left">
+                        <div class="show_image">
+                            <div class="overlay"></div>
+                            <div class="img-show" style="z-index: 9;margin-left:225%;margin-top: 47%;">
+                                <span (click)='enlargeImage($event,"close")'
+                                    style="color:white;font-size: 25px;font-weight: 400;">X</span>
+                                <img src="">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <ul class="tab_list">
+                <li class="active">
+                    <a [ngClass]="validators.general.touched?((validators.general.valid)?'valid-tab':'invalid-tab'):''"
+                        tabRouteLink="#general_tab" style="cursor: pointer;">General Information</a>
+                </li>
+                <li>
+                        <a [ngClass]="validators.training.touched?((validators.training.valid)?'valid-tab':'invalid-tab'):''"
+                        tabRouteLink="#training_tab" style="cursor: pointer">Training & Competence
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="model_right" style="width: calc(100% - 18%) !important;">
+            <div class="tab_body">
+                <div class="driverlist d-flex-new">
+                    <div class="title d-flex align-items-center">
+                        <h2>{{indexText}}</h2>
+                    </div>
+
+                </div>
+                <fieldset [disabled]="actionType=='view'">
+                    <div class="tab_info" id="general_tab">
+                        <div class="popup_form">
+                            <app-user-general-information
+                              (generalInformationEvent)="getGeneralInformationEvent($event)" [actionType]="actionType"
+                              (changedValue)="user$[$event.name] = $event.value"
+                              (valid)="validators.general.valid = $event" [userData]="user$">
+                            </app-user-general-information>
+
+                        </div>
+                    </div>
+                    <div class="tab_info" id="training_tab">
+                        <div class="popup_form">
+                            <app-user-document-information (userDocumentFiles)="getDriverDocumentFiles($event)"
+                                                           (changedValue)="user$[$event.name] = $event.value"
+                                                           (valid)="validators.training.valid = $event"
+                                                           [userData]="user$">
+                            </app-user-document-information>
+
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+
+        <div class="btn-toolbar" role="toolbar" style="float: right;">
+            <input type="submit" name="" (click)="editValues()" value="Edit" class="btn btn-primary"
+                *ngIf="actionType == 'view' && !userSubscriptionExpired">
+            <button type="button" *ngIf="actionType != 'view'" name="" class="btn btn-success" style="margin-left:5px; "
+                (click)="checkChildValidity()" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}">
+                Done</button>
+            <button [swal]="deleteSwal" type="button" *ngIf="actionType != 'add' && user$.userStatus != 'inactive'"
+                name="" class="btn btn-danger" style="margin-left:5px; "> Delete</button>
+            <swal #deleteSwal title="Delete {{ user$.displayName  }}?" text="This cannot be undone" type="question"
+                  [showCancelButton]="true" [focusCancel]="true" (confirm)="changeDriverStatus(user$)">
+            </swal>
+        </div>
+    </div>
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</ng-container>

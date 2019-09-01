@@ -1,0 +1,122 @@
+
+<form [formGroup]="userGeneralInformationForm">
+        <div class="row" >
+            <div class="col-lg-6">
+
+
+            </div>
+            <div class="col-lg-6" *ngIf="actionType !='add'" style="margin-top:-45px;">
+                <div class="model_group">
+                    <label>Status :</label>
+                            <div class="choose_option popup_rdo">
+                                <label class="rdocontainer">Active
+                                    <input type="radio" id="inservice" formControlName="userStatus" value="active">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="rdocontainer">In Active
+                                    <input type="radio" id="outofservice" formControlName="userStatus" value="inactive">
+                                    <span class="checkmark"></span>
+                                </label>
+                             </div>
+                    <div *ngIf="userGeneralInformationForm.controls.userStatus.errors && (userGeneralInformationForm.controls.userStatus.dirty || userGeneralInformationForm.controls.userStatus.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.userStatus.errors.required">Status is required.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>First Name : <span class="required">*</span></label>
+                    <!-- <p class="form-control">{{vehicle$.Plate}}</p> -->
+                    <input type="text" class="form-control" placeholder="Enter First Name" formControlName="fName">
+                    <div *ngIf="userGeneralInformationForm.controls.fName.errors && (userGeneralInformationForm.controls.fName.dirty || userGeneralInformationForm.controls.fName.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.fName.errors.required">First Name is required.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>Last Name :<span class="required">*</span></label>
+                    <!-- <p class="form-control">{{vehicle$.Make}}</p> -->
+                    <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lName">
+                    <div *ngIf="userGeneralInformationForm.controls.lName.errors && (userGeneralInformationForm.controls.lName.dirty || userGeneralInformationForm.controls.lName.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.lName.errors.required">Last Name is required.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>Phone :<span class="required">*</span></label>
+                    <!-- <p class="form-control">{{vehicle$.Year }}</p> -->
+                    <input type="text" class="form-control" placeholder="Enter Phone Number" formControlName="phoneNumber">
+                    <div *ngIf="userGeneralInformationForm.controls.phoneNumber.errors && (userGeneralInformationForm.controls.phoneNumber.dirty || userGeneralInformationForm.controls.phoneNumber.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.phoneNumber.errors.required">Phone Number is required.</span>
+                        <span *ngIf="userGeneralInformationForm.controls.phoneNumber.errors.pattern" class="m-form__help">Number Only</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>Email Address :<span class="required">*</span></label>
+                    <!-- <p class="form-control">{{vehicle$.Body }}</p> -->
+                    <input type="email" class="form-control" placeholder="Enter Email Address" formControlName="email">
+                    <div *ngIf="userGeneralInformationForm.controls.email.errors && (userGeneralInformationForm.controls.email.dirty || userGeneralInformationForm.controls.email.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.email.errors.required">Email is required.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>Address</label>
+                    <!-- <p class="form-control">{{vehicle$.GCM}}</p> -->
+                    <input type="text" class="form-control" placeholder="Enter Address" formControlName="address">
+                    <div *ngIf="userGeneralInformationForm.controls.address.errors && (userGeneralInformationForm.controls.address.dirty || userGeneralInformationForm.controls.address.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.address.errors.required">Address is required.</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="model_group">
+                    <label>Emergency Contact :</label>
+                    <!-- <p class="form-control">{{vehicle$.Aggregate}}</p> -->
+                    <input type="text" class="form-control" placeholder="Enter Emergency Contact Number" formControlName="emergencyContact">
+
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6" *ngIf="isAdmin == false;">
+                <div class="model_group">
+                    <label>Profile Image :</label>
+                        <div class="custom-file" style="width: 61%;margin-left: 1.035%;">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01"  (change)="detectFiles($event)">
+                            <label class="custom-file-label" #profileImage for="inputGroupFile01">Choose file</label>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-6" *ngIf="isAdmin == false;">
+                <div class="model_group">
+                    <label *ngIf="actionType == 'add'">Password :</label>
+                    <label *ngIf="actionType != 'add'">Reset Password :</label>
+                    <!-- <p class="form-control">{{vehicle$.Body }}</p> -->
+                    <input type='{{inputTypeProperty}}' class="form-control" placeholder="Enter Password Here" formControlName="password">
+                    <div *ngIf="userGeneralInformationForm.controls.password.errors && (userGeneralInformationForm.controls.password.dirty || userGeneralInformationForm.controls.password.touched)" class="col-lg-7 margin-t1"
+                         role="alert">
+                        <span class="m-form__help" *ngIf="userGeneralInformationForm.controls.password.errors.required">password is required.</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>

@@ -1,0 +1,76 @@
+<section class="d-flex page_outer">
+    <app-sidenav></app-sidenav>
+    <div class="contbody">
+        <app-header></app-header>
+        <!-- to enable subscription sidebar go to generic.module.ts and uncomment the SubscriptionSideNavComponent from declarations and exports-->
+        <div class="body_outer padd-0">
+            <simple-notifications></simple-notifications>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>
+
+<modal-component [removeHeader]="true" [toggle]="modal">
+
+    <div modal-body="">
+        <div class="container-fluid">
+            <div class="row">
+                <span>
+                    <h3 style="
+            font-family: poppins;
+            color: #01729c;
+        "> Your trial is going to expire in 1 day, Upgrade now??</h3>
+                </span>
+            </div><br>
+            <div class="row btn-toolbar">
+                <div class="btn-group">
+
+                    <button class="btn btn-danger btn-xs" data-dismiss="modal"
+                        style="/* float: right */background-color: #00AEEF;border-color: #00AEEF;"
+                        type="button">Dismiss</button>
+                    <button class="btn btn-success btn-xs"
+                        style="float: right;margin-left: 10px;background-color: rgba(0, 54, 58, 0.88);" type="button"
+                        [swal]="upgradeSwal">Upgrade</button>
+                </div>
+            </div>
+        </div>
+        <div modal-footer="">
+            <button class="btn btn-danger" data-dismiss="modal" style="float: right" type="button" id="modalClose">Close</button>
+        </div>
+    </div>
+    <swal #upgradeSwal title="Upgrade to Premium ?" text="{{alertMessage}}" type="question" [showCancelButton]="true"
+                                                [focusCancel]="true" (confirm)='upgradePlan("upgrade")'>
+                                        </swal>
+</modal-component>
+ <modal-component [removeHeader]="true" [toggle]="modalRenew">
+
+    <div modal-body="">
+        <div class="container-fluid">
+            <div class="row">
+                <span>
+                    <h3 style="
+            font-family: poppins;
+            color: #01729c;
+        "> Your plan has Expired, Renew now??</h3>
+                </span>
+            </div><br>
+            <div class="row btn-toolbar">
+                <div class="btn-group">
+
+                    <button class="btn btn-danger btn-xs" data-dismiss="modal"
+                        style="/* float: right */background-color: #00AEEF;border-color: #00AEEF;"
+                        type="button">Dismiss</button>
+                    <button class="btn btn-success btn-xs"
+                        style="float: right;margin-left: 10px;background-color: rgba(0, 54, 58, 0.88);" type="button"
+                        [swal]="renewSwal">Renew</button>
+                </div>
+            </div>
+        </div>
+        <div modal-footer="">
+            <button class="btn btn-danger" data-dismiss="modal" style="float: right" type="button" id="renewModalClose">Close</button>
+        </div>
+    </div>
+    <swal #renewSwal title="Renew the Plan ?" text="{{renewAlertMessage}}" type="question" [showCancelButton]="true"
+                                                [focusCancel]="true" (confirm)='upgradePlan("renew")'>
+                                        </swal>
+</modal-component>

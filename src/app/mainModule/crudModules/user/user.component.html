@@ -1,0 +1,160 @@
+<!-- BEGIN: Subheader -->
+<div class="spacer_30"></div>
+<div class="container">
+    <div class="row headings">
+        <div class="col">
+            <h2>
+                Drivers
+            </h2>
+        </div>
+        <div class="col">
+            <div class="m-menu__link m-menu__link--toggle-skip float-right" *ngIf="isAdmin" >
+                <button (click)="addDriver()" class="btn btn-lg btn-download-blue">
+                    <span>
+                        <i class="la la-plus-square-o"></i>
+                        <span>
+                            Add New
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="spacer_30"></div>
+<div class="container">
+        <div class="row no-gutters bg-white">
+
+                <div class="col-4">
+                    <div class="p-3">
+                        <div class="m-input-icon m-input-icon--left">
+                            <input type="text" #gb class="form-control" placeholder="Search..." id="generalSearch" (keyup)="search($event.target.value)">
+                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                <span>
+                                    <i class="la la-search"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 d-flex">
+                    <div class="p-3 d-flex">
+                            <div class="custom-control custom-checkbox align-self-center">
+                                <input class="custom-control-input ng-untouched ng-pristine ng-valid" id="showAll" type="checkbox" [(ngModel)]="showDeleted" (change)="checkBoxCheck($event)">
+                                <label class="custom-control-label" for="showAll">Show Inactive</label>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <modal-component [styles]="'custom-width'" [toggle]="modal" (onModalClose)="modalClose()">
+                        <div modal-title>
+                            <h2>User Detail</h2>
+                        </div>
+                        <div modal-body>
+                            <ng-container *ngIf="actionType">
+                                <app-view-user [user]="actionType=='view'?userObject:null" [actionType]="actionType" (changedModal)="outputValue()" ></app-view-user>
+                            </ng-container>
+                        </div>
+                    </modal-component>
+                    <div class="table_list table-responsive bg-white">
+                        <table id="driverlist" class="table table-hover" [mfData]="users$" #mf="mfDataTable" [mfRowsOnPage]="25">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col"  style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter >Image</mfDefaultSorter >
+                                    </th>
+                                    <th scope="col"  style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter >Name</mfDefaultSorter >
+                                    </th>
+                                    <th scope="col" style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter by="Plate">Email</mfDefaultSorter>
+                                    </th>
+                                    <th scope="col" style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter by="Phone">Phone</mfDefaultSorter>
+                                    </th>
+                                    <th scope="col" style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter by="licenceNumber">License No.</mfDefaultSorter>
+                                    </th>
+                                    <th scope="col" style=" background-color: rgba(0, 54, 58, 0.88) !important;">
+                                        <mfDefaultSorter by="licenceNumber">Emergency Contact.</mfDefaultSorter>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <ng-container *ngIf="!searchData">
+                            <tr *ngFor="let item of mf.data;let i = index;" (click)="viewDriver(item,i)" style="cursor: pointer;">
+                                <td>
+                                    <div class="table_user">
+                                        <a>
+                                            <img src="{{item.profileImageUrl  }}"   class="driver-image" alt="">
+    <!--                                        <span>{{item.displayName}}</span>-->
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p style="cursor:pointer ;color: rgba(0, 54, 58, 0.88)">{{item.displayName }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.email }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.phoneNumber }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.licenceNumber }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.emergencyContact }}</p>
+                                </td>
+
+
+                            </tr>
+                                    </ng-container>
+                            <ng-container *ngIf="searchData">
+                            <tr class="SearchAllData" hidden *ngFor="let item of users$;let i = index;" (click)="viewDriver(item,i)" style="cursor: pointer;">
+                                <td>
+                                    <div class="table_user">
+                                        <a>
+                                            <img src="{{item.profileImageUrl  }}"   class="driver-image" alt="">
+    <!--                                        <span>{{item.displayName}}</span>-->
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p style="cursor:pointer ;color: rgba(0, 54, 58, 0.88)">{{item.displayName }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.email }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.phoneNumber }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.licenceNumber }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text">{{item.emergencyContact }}</p>
+                                </td>
+                                <td>
+                                    <p class="info_text"></p>
+                                </td>
+                            </tr>
+                            </ng-container>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[10,25,50]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+

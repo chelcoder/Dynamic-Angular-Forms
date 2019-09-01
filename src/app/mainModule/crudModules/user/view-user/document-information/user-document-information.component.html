@@ -1,0 +1,115 @@
+<form [formGroup]="documentInformationForm">
+
+    <div class="row margin-b1">
+        <div class="col-3">
+            <label>License No :</label>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="" formControlName="licenceNumber">
+            <div *ngIf="documentInformationForm.controls.licenceNumber.errors && (documentInformationForm.controls.licenceNumber.dirty || documentInformationForm.controls.licenceNumber.touched)"
+                class="col-7 margin-t1" role="alert">
+                <span class="m-form__help"
+                    *ngIf="documentInformationForm.controls.licenceNumber.errors.required">Licence Number is
+                    required.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-b1">
+        <div class="col-3">
+            <label>Class :</label>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="" formControlName="licenceClass">
+            <div *ngIf="documentInformationForm.controls.licenceClass.errors && (documentInformationForm.controls.licenceClass.dirty || documentInformationForm.controls.licenceClass.touched)"
+                class="col-7 margin-t1" role="alert">
+                <span class="m-form__help"
+                    *ngIf="documentInformationForm.controls.licenceClass.errors.required">Licence Class is
+                    required.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-b1">
+        <div class="col-3">
+            <label> Expiry :</label>
+        </div>
+        <div class="col-6">
+            <input type="date" class="form-control" placeholder="" formControlName="licenceExpDate">
+            <div *ngIf="documentInformationForm.controls.licenceExpDate.errors && (documentInformationForm.controls.licenceExpDate.dirty || documentInformationForm.controls.licenceExpDate.touched)"
+                class="col-7 margin-t1" role="alert">
+                <span class="m-form__help"
+                    *ngIf="documentInformationForm.controls.licenceExpDate.errors.required">Licence Expiry Date is
+                    required.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-b1">
+        <div class="col-3">
+
+            <label class="form-label">License Document:</label>
+        </div>
+
+        <div class="custom-file col-6">
+            <input type="file" class="custom-file-input" id="licenseFile" name="licenseFile"
+                (change)="detectLiscenseFile($event,$event.target.id)">
+            <label class="custom-file-label custom-label-defiance" #licenseFileLabel for="licenseFile">Choose file</label>
+        </div>
+        <div class="col-3 btn-toolbar" style="display: -webkit-inline-box">
+            <div class="btn-group">
+                <button type="button" id="license" class="btn btn-danger btn-xs" value="License File"
+                    [hidden]="licenseRemoveButton"
+                    (click)="removeFile($event.target.value,$event.target.id);">X</button>
+                <button type="button" style="margin-left: 8%;" id="licenseFileUpload"
+                    class="btn btn-download-blue btn-xs" value="License File" [hidden]="licenseFileUploadButton"
+                    #licenseFileUploadText
+                    [ngClass]="{'m-loader m-loader--right m-loader--light': licenseLoading}">Uploading</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row margin-b1">
+        <div class="col-3">
+            <label>Medical <br>Examination : <span class="required">*</span></label>
+            <!-- <p class="form-control">{{vehicle$.GCM}}</p> -->
+        </div>
+        <div class="col-6">
+            <input type="date" class="form-control" placeholder="" formControlName="LME">
+            <div *ngIf="documentInformationForm.controls.LME.errors && (documentInformationForm.controls.LME.dirty || documentInformationForm.controls.LME.touched)"
+                class="col-7 margin-t1" role="alert">
+                <span class="m-form__help" *ngIf="documentInformationForm.controls.LME.errors.required">License
+                    Medical Examination is required.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row margin-b1">
+        <div class="col-3">
+                <label class="form-label">Medical Document:</label>
+        </div>
+        <div class="custom-file col-6">
+                    <input type="file" class="custom-file-input " id="licenseMedicalFile" name="licenseMedicalFile"
+                        (change)="detectLicenseMedicalFile($event)">
+                    <label class="custom-file-label custom-label-defiance" #licenseMedicalFileLabel for="licenseMedicalFile">Choose
+                        file</label>
+        </div>
+        <div class="col-3 btn-toolbar" style="display: -webkit-inline-box">
+                    <div class="btn-group">
+                        <button type="button" id="licenseMedicalDocument" class="btn btn-danger btn-xs"
+                            value="License Medical File" [hidden]="licenseMedicalRemoveButton"
+                            (click)="removeFile($event.target.value,$event.target.id);">X</button>
+                        <button type="button" style="margin-left: 8%;" id="licenseMedicalDocumentButton"
+                            class="btn btn-download-blue btn-xs" value="License Medical File"
+                            [hidden]="licenseMedicalFileUploadButton" #licenseMedicalFileUploadText
+                            [ngClass]="{'m-loader m-loader--right m-loader--light': LicenseMedicalLoading}">Uploading</button>
+                    </div>
+        </div>
+    </div>
+
+
+
+
+</form>

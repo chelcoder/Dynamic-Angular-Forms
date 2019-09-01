@@ -1,0 +1,117 @@
+<section>
+		<div class="plan_outer d-flex">
+			<!-- Track plus Form section Start -->
+			<div class="plan_form" style="margin-bottom: 17px;">
+				<div class="plan_form_outer">
+					<div class="logo_img" style="padding:25px;">
+						<img src="../../../assets/chelcoder_image/chelcoder.png" style="margin-left: -5px;" alt="">
+					</div>
+					<div class="plan_box" >
+						<div [hidden] = "logintemplate.showLoginPage">
+							<form (ngSubmit)="f.form.valid && signin()" #f="ngForm" class="m-login__form m-form" action="">
+							<ng-template #alertSignin></ng-template>
+							<div class="plan_group" style="display: grid;">
+								<label>Username</label>
+								<input class="form-control_signUp " type="text" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel"
+								 autocomplete="off">
+							</div>
+							<div class="plan_group" style="display: grid;">
+								<label>Password</label>
+								<input class="form-control_signUp" type="password" placeholder="Password" name="password" [(ngModel)]="model.password"
+								 #password="ngModel">
+							</div>
+							<div class="plan_group btn_next">
+								<button [disabled]="loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" id="m_login_signin_submit"
+								 class="btn btn-blue">
+									Login
+								</button>
+							</div>
+							<div *ngIf="noUserFoundMessage" style="margin-top: 1%;margin-left: 14%" class="m-alert m-alert--outline alert alert-danger alert-dismissible" role="alert">
+                                    <span class="m-form__help" *ngIf="noUserFoundMessage">{{noUserFoundMessage}}</span>
+                            </div>
+							<div class="row"style="margin-bottom:5%;">
+								<div class="col">
+									<input type="checkbox" name="remember" [(ngModel)]="model.remember" #remember="ngModel"> Remember me
+								</div>
+								<div class="col">
+									<a (click)="generic('forgotPassword')" style="color:rgba(0, 54, 58, 0.88);font-size:13px;cursor: pointer;float: right;" id="m_login_forget_password" >
+										Forgot Password?
+									</a>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col">
+									<div style="border-bottom: 1px solid #eee"></div>
+								</div>
+							</div>
+
+							</form>
+
+						</div>
+
+						<div [hidden]=logintemplate.forgottenPasswordSection>
+								<div class="m-login__head">
+									<h3 class="m-login__title">
+										Forgotten Your Password?
+									</h3>
+									<div class="m-login__desc" style="margin-top: 10px;margin-bottom:15px;">
+										Enter your email to reset your password
+									</div>
+								</div>
+							<form (ngSubmit)="f.form.valid && forgotPass()" #f="ngForm" class="m-login__form m-form" action="">
+								<ng-template #alertForgotPass></ng-template>
+								<div class="form-group m-form__group">
+									<input class="form-control m-input" type="text" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel"
+									id="m_email" autocomplete="off">
+								</div>
+								<div class="m-login__form-action">
+									<a (click)="generic('cancel')" style="width: 48%;height:2.5rem;border:0px;" id="cancelPasswordButton" >
+												Cancel
+									</a>
+									<button [disabled]="loading" style="width: 48%;height:2.5rem;float:right;border:0px;" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" id="m_login_forget_password_submit"
+									class="btn-blue">
+										Reset Password
+									</button>
+
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+			<!-- Track plus Form section End -->
+			<!-- Track plus Plan section Start -->
+			<div class="plan_list">
+				<div class="blackoverlay">
+					<div class="plan_details">
+						<h2>Welcome to User Management System
+						</h2>
+						<p>A boiler plate crud system and authentication system created by CHELCODER using firebase, node cloud functions and angular
+
+							</p>
+						<div class="plan_list_outer">
+							<div class="plan_list_box" style="width: 50%;">
+								<div class="plan_title_box">
+									<h3>Dummy account</h3>
+									<span>Credentials</span>
+									<h4>email: test@chelcoder.com</h4>
+									<h4>password: test1234</h4>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Track plus Plan section End -->
+
+					<div class="track_footer" style=" background: #f2f8ff!important;padding-top: 10px;">
+							<p>© 2019 chelcoder </p>
+						</div>
+		</div>
+
+	</section>

@@ -1,0 +1,37 @@
+<div class="slidebar">
+    <div class="side_logo">
+        <a routerLink="/index">
+            <img src="./assets/chelcoder_image/chelcoder.png" alt="">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li  class="dropDown" aria-haspopup="true">
+                <a routerLink="/index">
+                    <i class="m-menu__link-icon flaticon-dashboard"></i>
+                    <span>DASHBOARD</span>
+                </a>
+                <i class="fa fa-caret-up subMenu_open"></i>
+
+
+                <ul class="submenu">
+                    <li routerLinkActive="change"  aria-haspopup="true" *ngIf="userRole == 'admin'">
+                        <a routerLink="/user" class="m-menu__link">
+                            <i class="m-menu__link-icon flaticon-profile"></i>
+                            <span class="m-menu__link-text">
+						User Details
+					</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="logout">
+        <a routerLink="/logout">
+            <i class="fa fa-sign-out"></i>
+            <span>LOGOUT</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="header d-flex-new">
+    <div class="header_left">
+        <div class="tiggle_menu">
+            <label>☰</label>
+        </div>
+        <div class="logout_he">
+            <a href="#">
+                <img src="./assets/chelcoder_image/chelcoder.png" alt="">
+            </a>
+        </div>
+        <div class="backArrow" [hidden]="previousButtonHidden">
+
+            <a id="previousButton" (click)="goBack()" class="previous round demo1" title="Go Back" style="cursor:pointer;">
+                <img src="./assets/chelcoder_image/left-arrow.png" alt="">
+                <span>Back</span>
+            </a>
+        </div>
+
+    </div>
+    <div *ngIf="trial == 'true' &&( userRole =='admin' && subscriptionPlan =='LITE')" class="he_notification" style="margin-left: 52%; margin-top:1.5%">
+            <a href="javascript:void(0)" style="font-size: 12.5px;">
+                You have {{trialDaysLeft}} days left until your free trial ends.
+            </a>
+    </div>
+    <div class="header_right">
+        <!-- <div class="he_email">
+            <a href="#">
+                <i class="fa fa-envelope"></i>
+                <span class="top_round"></span>
+            </a>
+        </div> -->
+
+        <div class="he_user">
+            <div class="user_outer">
+                <div class="m-card-user__pic">
+                    <img src="{{userPhoto?userPhoto:'./assets/app/media/img//users/user3.jpg'}}" class="m--img-rounded" alt="" /><span>{{userName}}</span>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="userSubmenu">
+                <div class="user_info d-flex">
+                    <div class="user_img">
+                        <img src="{{userPhoto?userPhoto:'./assets/app/media/img//users/user3.jpg'}}" alt="">
+                    </div>
+                    <div class="userName">
+                        <h5>{{userName}}</h5>
+                        <p>{{userEmail}}</p>
+                    </div>
+                </div>
+                <div class="userLink">
+                    <ul>
+                        <li *ngIf="userRole == 'admin'"><a (click)="gotoProfile()">My Profile</a></li>
+                        <li class="divider"><a routerLink="/change-password">Change Password</a></li>
+                        <!-- <li class="divider"><a href="#">Admin Roles</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li class="divider"><a href="#">Support &amp; Help Center</a></li> -->
+                        <li><a routerLink="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

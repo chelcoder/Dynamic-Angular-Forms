@@ -1,0 +1,19 @@
+@import 'global_color';
+
+//$primary-color-dark: color("blue","base-1");
+//$primary-color: color("blue","light");
+//$primary-color-light: color("blue","lighten-5");
+$primary-color-dark: color("mdb-color","darken-1");
+$primary-color: color("mdb-color","base");
+$primary-color-light: color("mdb-color","lighten-5");
+$success-color: color("green", "base") !default;
+$error-color: color("red", "base") !default;
+$link-color: color("light-blue", "darken-1") !default;
+$primary-text-color: color("grey","lighten-3");
+$primary-text-color-dark: color("grey","lighten-1");
+$primary-text-color-light: color("grey","lighten-5");
+$global-font-size: 12px;
+$secondary-font-size: 14px;
+$form-background-color: color("grey","lighten-3");
+
+
