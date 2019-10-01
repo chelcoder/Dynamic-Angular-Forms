@@ -124,6 +124,10 @@ export class ViewUserComponent implements OnInit {
             this.loading = true;
             this.submitForm(this.user$);
         }
+        else
+        {
+            swal.fire("Validation Error","Please enter all required field to continue","error");
+        }
     }
 
 
@@ -191,6 +195,10 @@ export class ViewUserComponent implements OnInit {
             }else{
                 userData.profileImageUrl = "https://www.netfort.com/assets/user.png";
                 if(this.isDriverAdmin == false){
+                    if(!userData.password)
+                    {
+                        userData.password = "demo1234"
+                    }
                     this._userSVC.addNewDriver(userData, (data) => {
                         if(this.totalDocumentFiles){
                             let response = JSON.parse(data['_body']);
@@ -206,37 +214,17 @@ export class ViewUserComponent implements OnInit {
                         }else{
 
                             this.changedModal.emit();
-                            this.showNotification("success","Driver Added Successfully");
+                            if(userData.password == "demo1234")
+                            {
+                                swal.fire("Password not entered","Your Default Password is demo1234","success");
+                            }
+                            this.showNotification("success","Driver Added Successfully" );
                         }
 
                     },error=>{
                         this.loading = false;
                         swal.fire("Error Found","Email Address Already in use","error");
                     })
-                }else{
-                    this._userSVC.addAdminDriver(userData, (data) => {
-                        if(this.totalDocumentFiles){
-                            let response = JSON.parse(data['_body']);
-                            let responseuserId = response["userId"];
-                            this.totalDocumentFiles.forEach((file,index)=>{
-                                this._userSVC.addDocument(responseuserId,file,()=>{
-                                    this.changedModal.emit();
-                                    if(this.totalDocumentFiles.length-1 == index){
-                                        this.showNotification("success","Admin Driver Added Successfully");
-                                    }
-                                })
-                            })
-                        }else{
-                            this.changedModal.emit();
-                            this.showNotification("success","Admin Driver Added Successfully");
-                        }
-
-
-
-                    },error=>{
-                        this.loading = false;
-                        swal.fire("Error Found","Email Address Already in use","error");
-                    });
                 }
 
             }

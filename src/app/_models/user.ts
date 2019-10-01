@@ -23,7 +23,7 @@ export interface IUser {
     emergencyContact?: string;
     clientID?: string;
     lastMessage?: string;
-    lastMessageTime?: Date;
+    lastMessageTime?: any;
     currentLocation?: any;
     dutyStatus?: string;
     lastJobId?:string;
@@ -84,6 +84,7 @@ export class User implements IUser {
         this.imageName = data.imageName;
         this.emergencyContact = data.emergencyContact;
         this.lastMessage = data.lastMessage;
+        this.lastMessageTime = data.lastMessageTime.toDate();
         this.dutyStatus = data.dutyStatus;
         this.currentLocation = data.currentLocation;
         this.userStatus = data.userStatus;

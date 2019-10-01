@@ -25,6 +25,17 @@
                     </li>
 
                 </ul>
+                <ul class="submenu">
+                    <li routerLinkActive="change"  aria-haspopup="true" *ngIf="userRole == 'admin'">
+                        <a routerLink="/chat" class="m-menu__link">
+                            <i class="m-menu__link-icon flaticon-chat"></i>
+                            <span class="m-menu__link-text">
+						Chat
+					</span>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
         </ul>
     </nav>

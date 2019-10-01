@@ -1,0 +1,79 @@
+<div class="m-content">
+	<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet__body">
+
+<div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>Recent</h4>
+            </div>
+            <div class="srch_bar">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar"  placeholder="Search" (keyup)="searchData($event.target.value)" >
+                <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+            </div>
+          </div> 
+          <div class="inbox_chat">
+            <div class="chat_list " [ngClass]='!selectedDriver ? "active_chat":""' style="cursor: pointer">
+              <div class="chat_people" (click)="selectAll()">
+                
+                <div class="chat_img">  </div>
+                <div class="chat_ib">
+                  <h5>All<span class="chat_date"></span></h5>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngFor="let driver of drivers$">
+            
+            <div class="chat_list " [ngClass]='selectedDriver && (driver.$key == selectedDriver.$key)?"active_chat":""' style="cursor: pointer">
+              <div class="chat_people" (click)="selectDriver(driver)">
+                
+                <div class="chat_img"> <img src="{{driver.profileImageUrl}}" > </div>
+                <div class="chat_ib">
+                  <h5>{{driver.displayName}}<span class="chat_date">{{driver.lastMessageTime?(driver.lastMessageTime|  date:'MMM d'):'' }}</span></h5>
+                  <p>{{driver.lastMessage?driver.lastMessage:''}}</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          </div>
+        </div>
+        <div class="mesgs">
+          <div class="msg_history">
+            <ng-container *ngFor="let message of chatMessages">
+            <div class="incoming_msg" *ngIf="!message.admin">
+              <div class="incoming_msg_img"> <img src="{{selectedDriver.profileImageUrl}}" alt="sunil"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>{{message.message}}</p>
+                  <span class="time_date"> {{message.time | date:'h:mm a'}}    |    {{message.time | date:'MMMM d'}}</span></div>
+              </div>
+            </div>
+          
+             <div class="outgoing_msg" *ngIf="message.admin">
+              <div class="sent_msg">
+                <p>{{message.message}}</p>
+                <span class="time_date"> {{message.time | date:'h:mm a'}}    |    {{message.time | date:'MMMM d'}}</span> </div>
+            </div>
+          </ng-container>
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write"> 
+              <input type="text" (keydown.enter)="sendMessage()" class="write_msg" placeholder="Type a message" name="messageText" [(ngModel)]="messageText">
+              <button class="msg_send_btn" (click)="sendMessage()" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true" ></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    

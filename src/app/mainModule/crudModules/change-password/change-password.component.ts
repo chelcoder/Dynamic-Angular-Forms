@@ -17,6 +17,7 @@ import { GlobalsService } from '../../../_services/globals.service';
 export class ChangePasswordComponent implements OnInit {
     loading = false;
     public addProfile: FormGroup;
+    public userEmail: string;
     public password?: FormControl;
     public rePassword?: FormControl;
     public currentPassword?: FormControl;
@@ -34,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
         this.password = new FormControl('', Validators.required);
         this.rePassword = new FormControl('', Validators.required);
         this.currentPassword = new FormControl('', Validators.required);
-
+        this.userEmail = this.globalService.userEmail
     }
     private createForm() {
         this.addProfile = new FormGroup({

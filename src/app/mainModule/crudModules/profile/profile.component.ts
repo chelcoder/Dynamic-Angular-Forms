@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   public formReady: boolean = false;
   public userDescription: UserDetails;
   public userRole: string;
+  public userEmail: string;
 
   constructor(
     @Inject(SESSION_STORAGE) private storage: WebStorageService,
@@ -57,7 +58,6 @@ export class ProfileComponent implements OnInit {
     private authService: AuthenticationService,
     private _upSvc: UploadService,
     private _clientService: clientService,
-    public mapsAPILoader: MapsAPILoader,
     private _route: ActivatedRoute,
     private http: Http
   ) {}
@@ -74,6 +74,7 @@ export class ProfileComponent implements OnInit {
       this._clientService
         .getClientsById(this.clientId)
         .subscribe(clientData => {
+          this.userEmail = this._globalService.userEmail
           this.userDetails = new UserDetails(clientData);
           const datas: UserDetails = this.userDetails;
           let currentDate = moment()

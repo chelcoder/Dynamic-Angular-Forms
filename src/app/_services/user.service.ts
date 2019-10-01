@@ -119,6 +119,27 @@ export class UserService {
       );
   }
 
+  getUser() {
+    let clientId = localStorage.getItem(GlobalVaribale.clientId);
+    let tempUsers = [];
+    return this._db
+      .collection(GlobalVaribale.clientRef)
+      .doc(clientId)
+      .collection(GlobalVaribale.userRef)
+      .ref.get().then(users=>{
+        
+        users.docs.forEach(
+          user=>{
+            const data = user.data() as User;
+            const id = user.id;
+            tempUsers.push({id,...data})    
+          }
+          
+        )
+        return tempUsers;
+      });
+  }
+
   deteletDriver(userData: User) {
     let clientId = localStorage.getItem(GlobalVaribale.clientId);
     return this._db

@@ -20,7 +20,7 @@
 					<div class="form-group m-form__group row">
 						<label class="col-lg-4 col-form-label" for="userEmail">User Email:</label>
 						<div class="col-lg-6">
-							<input type="text" class="form-control m-input" placeholder="" id="userEmail" formControlName="UserEmail" required>
+							<input  type="text" class="form-control m-input" placeholder="" id="userEmail" formControlName="UserEmail" required>
 							<div *ngIf="UserEmail.errors && (UserEmail.dirty || UserEmail.touched)" class="m-alert m-alert--outline alert alert-danger alert-dismissible"
 								role="alert">
 								<span class="m-form__help" *ngIf="UserEmail.errors.required">User Email is required.</span>
@@ -67,7 +67,7 @@
 							<div class="col-lg-6">
 								<div class="row">
 									<div class="col">
-										<button type="submit" [disabled]="addProfile.invalid || loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" (click)="editProfile()" class="btn btn-lg btn-block btn-success">Submit</button>
+										<button type="submit" [disabled]="addProfile.invalid || loading || userEmail == 'demo@chelcoder.com'" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" (click)="editProfile()" class="btn btn-lg btn-block btn-success">Submit</button>
 									</div>
 									<div class="col">
 										<button type="submit" (click)="addProfile.reset()" class="btn btn-lg btn-block btn-danger">Cancel</button>

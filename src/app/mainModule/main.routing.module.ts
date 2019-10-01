@@ -27,6 +27,11 @@ const routes: Routes = [
 
             },
             {
+                "path": "chat",
+                "loadChildren": ".\/functionModules\/chat\/chat.module#ChatModule",
+
+            },
+            {
                 "path": "",
                 "redirectTo": "index",
                 "pathMatch": "full"
