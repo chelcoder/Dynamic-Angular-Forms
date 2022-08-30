@@ -34,7 +34,7 @@
     "core-js": "^3.1.4",
     "firebase": "^6.3.3",
     "jquery": "^3.4.1",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "^0.5.35",
     "ng2-datepicker": "^3.1.1",
     "ng5-slider": "^1.2.4",
     "ngx-bootstrap": "^5.1.0",
